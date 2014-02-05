@@ -19,12 +19,12 @@ eclipse.classpath.file {
 
 apply plugin : 'maven'
 group = 'jp.rough_diamond'
-version = '1.0-SNAPSHOT'
+version = '1.0'
 
 uploadArchives {
 	repositories {
 		mavenDeployer {
-			repository(url: uri('../repo'))
+			repository(url: uri('repos/maven'))
 		}
 	}
 }

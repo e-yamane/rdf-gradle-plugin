@@ -5,6 +5,6 @@ import org.gradle.api.Plugin
 
 class RDFPlugin implements Plugin<Project> {
 	void apply(Project target) {
-		target.task('hello', type: GreetingTask)
+		target.task('setupProfile', type: SetupProfileTask)
 	}
 }
