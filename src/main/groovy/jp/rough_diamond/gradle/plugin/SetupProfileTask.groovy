@@ -31,7 +31,7 @@ class SetupProfileTask extends DefaultTask {
 		} else {
 			environment = System.env['GRADLE_ENV'] ?: DEFAULT_ENV 
 		}
-		println environment
+		logger.info environment ;
 		File defaultProfile = new File("profiles/default.profile")
 		File profile = new File("profiles/" + environment + ".profile")
 		def config = new ConfigSlurper().parse(new Properties())
@@ -42,17 +42,17 @@ class SetupProfileTask extends DefaultTask {
 			config = config.merge(new ConfigSlurper().parse(profile.toURL()));
 		}
 		if(config.isEmpty()) {
-			println "環境依存情報が存在しないので処理を終了します。"
+			logger.info "環境依存情報が存在しないので処理を終了します。"
 			return
 		}
 		def prop = config.toProperties()
 		File propFile = new File(new File(resourceDir), propertyFile)
-		println propFile.absolutePath;
+		logger.debug propFile.absolutePath;
 		propFile.parentFile.mkdirs()
 		prop.store(new FileOutputStream(propFile), environment + " environment profile.");
 	
 		if(!new File(templatePath).exists()) {
-			println "テンプレートが無いので終了します"
+			logger.info "テンプレートが無いので終了します"
 			return
 		}
 		ant.filter(filtersFile:propFile.absolutePath)

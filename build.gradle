@@ -19,7 +19,7 @@ eclipse.classpath.file {
 
 apply plugin : 'maven'
 group = 'jp.rough_diamond'
-version = '1.0'
+version = '1.0.1'
 
 uploadArchives {
 	repositories {
